@@ -43,9 +43,35 @@ const CreatePost = () => {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    // making sure our browser doesn't automatically reload/refresh our app
+    e.preventDefault();
+    // check if we have the form and the photo before submiting
+    if (form.prompt && form.photo) {
+      setLoading(true);
+      try {
+        // data fetching
+        const response = await fetch('http://localhost:8080/api/v1/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...form }),
+        });
 
-  }
+        await response.json();
+        alert('Success');
+        // going back to home to see our submit
+        navigate('/');
+      } catch (err) {
+        alert(err);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert('Please generate an image with proper details');
+    }
+  };
 
   // take the event, the key press event and its going to call the set formstate 
   // there we want to spread the entire form and we want to update e.target.name with the newly created e.target.value
