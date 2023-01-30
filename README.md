@@ -6,7 +6,10 @@ This was built using React, Node.js, Express, MongoDB.
 
 
 
-https://user-images.githubusercontent.com/104731480/215590600-a39d6482-5af6-475e-b8d5-462273afe63a.mov
+https://user-images.githubusercontent.com/104731480/215593372-355bc37f-0655-42db-828e-791ff98b6485.mov
+
+
+
 
 
 We write our Prompt or we can get a random prompt for the image
