@@ -7,15 +7,17 @@ import { Loader, Card, FormField } from '../components';
 const RenderCards = ({ data, title }) => {
   // if data is greater than 0, then we want to map over the data
   // and we want render all the cards while passing all of the post data to each individual card
-  if(data?.length > 0) { 
-    return data.map((post) => <Card key={post._id} {...post} />)
+  if (data?.length > 0) { 
+    return (
+      data.map((post) => <Card key={post._id} {...post} />)
+    );
   }
   return (
     <h2 className='mt-5 font-bold text-[#6449ff] text-xl uppercase'>
       {title}
     </h2>
-  )
-}
+  );
+};
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +25,7 @@ const Home = () => {
   
   const [searchText, setSearchText] = useState('')
   
+  useEffect(() => {
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -33,7 +36,7 @@ const Home = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      })
 
       if (response.ok) {
         const result = await response.json();
@@ -45,11 +48,11 @@ const Home = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  fetchPosts();
+
+}, []);
 
 
 
@@ -89,7 +92,7 @@ const Home = () => {
                 />
               ) : (
                 <RenderCards
-                  data={[allPosts]}
+                  data={allPosts}
                   title="No posts found"
                 />
                 
